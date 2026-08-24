@@ -14,7 +14,7 @@
 
 - id: latex-syntax-cleaner
   name: Clean LaTeX citations and crefs
-  description: Normalize whitespace inside \cite{} and spacing around \cref.
+  description: Normalize whitespace inside \cite{} and \citep{}, and spacing around \cref.
   entry: latex-syntax-cleaner
   language: python
   files: \.tex$

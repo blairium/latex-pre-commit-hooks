@@ -3,8 +3,8 @@ import sys
 
 
 def clean_latex(filenames):
-    # 1. Matches \cite{...} across lines, including NBSPs (\xa0)
-    cite_content_regex = re.compile(r"\\cite\{([\s\S]*?)\}")
+    # 1. Matches \cite{...} and \citep{...} across lines, including NBSPs (\xa0)
+    cite_content_regex = re.compile(r"\\(cite|citep)\{([\s\S]*?)\}")
 
     # 2. Matches [not tilde or newline or opening bracket] followed by \cref
     cref_spacing_regex = re.compile(r"([^~\n\(\[])\\cref")
@@ -20,9 +20,10 @@ def clean_latex(filenames):
 
             # Step A: Clean internal citation whitespace
             def fix_cite_internal(match):
-                keys = match.group(1)
+                command = match.group(1)
+                keys = match.group(2)
                 cleaned_keys = re.sub(r"[\s\xa0]+", "", keys)
-                return f"\\cite{{{cleaned_keys}}}"
+                return f"\\{command}{{{cleaned_keys}}}"
 
             new_content = cite_content_regex.sub(fix_cite_internal, content)
 
