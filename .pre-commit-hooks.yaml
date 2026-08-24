@@ -1,0 +1,20 @@
+- id: replace-latex-math
+  name: Replace $ math with \( \)
+  description: Replace inline $...$ math delimiters with \( ... \), skipping TikZ coordinates.
+  entry: replace-latex-math
+  language: python
+  files: \.(tex|md)$
+
+- id: fix-nbsp
+  name: Replace non-breaking spaces
+  description: Replace non-breaking spaces (U+00A0) with regular spaces in LaTeX files.
+  entry: fix-nbsp
+  language: python
+  files: \.tex$
+
+- id: latex-syntax-cleaner
+  name: Clean LaTeX citations and crefs
+  description: Normalize whitespace inside \cite{} and spacing around \cref.
+  entry: latex-syntax-cleaner
+  language: python
+  files: \.tex$
